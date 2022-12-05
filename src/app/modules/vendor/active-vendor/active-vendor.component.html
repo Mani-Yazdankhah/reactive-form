@@ -1,33 +1,35 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-            <div class="mb-3">
-                <label for="fname" class="form-label">Name</label>
-                <input type="text" class="form-control" id="fname" placeholder="">
-            </div>
+            <form [formGroup]="venderForm">
+                <div class="mb-3">
+                    <label for="fname" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="fname" placeholder="" formControlName="name">
+                </div>
 
-            <div class="mb-3">
-                <label for="username" class="form-label">Email</label>
-                <input type="email" class="form-control" id="username" placeholder="">
-            </div>
+                <div class="mb-3">
+                    <label for="username" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="username" placeholder="" formControlName="email">
+                </div>
 
-            <div class="mb-3">
-                <label for="bio" class="form-label">Bio</label>
-                <textarea class="form-control" id="bio" rows="3"></textarea>
-            </div>
+                <div class="mb-3">
+                    <label for="bio" class="form-label">Bio</label>
+                    <textarea class="form-control" id="bio" rows="3" formControlName="bio"></textarea>
+                </div>
 
-            <div class="mb-3">
-                <select class="form-select" aria-label="Default select example">
-                    <option value="">Please Select Domain</option>
-                    <option value="erp">ERP</option>
-                    <option value="crm">CRM</option>
-                    <option value="ecommerce">E-commerce</option>
-                </select>
-            </div>
+                <div class="mb-3">
+                    <select class="form-select" aria-label="Default select example" formControlName="domain">
+                        <option value="">Please Select Domain</option>
+                        <option value="erp">ERP</option>
+                        <option value="crm">CRM</option>
+                        <option value="ecommerce">E-commerce</option>
+                    </select>
+                </div>
 
-            <div class="mb-3">
-                <button type="button" class="btn btn-primary">Submit</button>
-            </div>
+                <div class="mb-3">
+                    <button type="button" class="btn btn-primary" [disabled]="!venderForm.valid">Submit</button>
+                </div>
+            </form>
         </div>
 
         <div class="col-md-6">
