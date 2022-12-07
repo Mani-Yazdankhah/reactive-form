@@ -1,24 +1,33 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-            <form [formGroup]="venderForm">
+            <form [formGroup]="venderForm" (ngSubmit)="onSubmit()">
                 <div class="mb-3">
                     <label for="fname" class="form-label">Name</label>
-                    <input type="text" class="form-control" id="fname" placeholder="" formControlName="name">
+                    <div class="error-box" *ngIf="isNameNotFilled">Name is required</div>
+                    <input type="text" class="{{isNameNotFilled ? 'form-control invalid' : 'form-control'}}" id="fname"
+                        placeholder="" formControlName="name">
                 </div>
 
                 <div class="mb-3">
                     <label for="username" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="username" placeholder="" formControlName="email">
+                    <div class="error-box" *ngIf="isEmailNotFilled">Email is required</div>
+                    <div class="error-box" *ngIf="isEmailInvalid">Email must be in valid format</div>
+                    <input type="email" class="{{isEmailNotFilled ? 'form-control invalid' : 'form-control'}}"
+                        id="username" placeholder="" formControlName="email">
                 </div>
 
                 <div class="mb-3">
                     <label for="bio" class="form-label">Bio</label>
-                    <textarea class="form-control" id="bio" rows="3" formControlName="bio"></textarea>
+                    <div class="error-box" *ngIf="isBioNotFilled">Bio is required</div>
+                    <textarea class="{{isBioNotFilled ? 'form-control invalid' : 'form-control'}}" id="bio" rows="3"
+                        formControlName="bio"></textarea>
                 </div>
 
                 <div class="mb-3">
-                    <select class="form-select" aria-label="Default select example" formControlName="domain">
+                    <div class="error-box" *ngIf="isDomainNotFilled">Domain is required</div>
+                    <select class="{{isDomainNotFilled ? 'form-select invalid' : 'form-select'}}"
+                        aria-label="Default select example" formControlName="domain">
                         <option value="">Please Select Domain</option>
                         <option value="erp">ERP</option>
                         <option value="crm">CRM</option>
@@ -27,12 +36,12 @@
                 </div>
 
                 <div class="mb-3">
-                    <button type="button" class="btn btn-primary" [disabled]="!venderForm.valid">Submit</button>
+                    <button type="submit" class="btn btn-primary" [disabled]="!venderForm.valid">Submit</button>
                 </div>
             </form>
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-6" id="info">
             <h1>Object should be print here</h1>
         </div>
     </div>
